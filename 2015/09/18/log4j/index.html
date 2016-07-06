@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>log4j的学习及在web项目中的应用 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在项目中我们都是使用log4j来控制日志的，下面让我们了解一下其他日志工具并学习一下log4j吧。
+一、 日志工具1、log4j(一) 简介 Log4j是Apache的一个开放源代码项目，用于记录日志，通过使用Log4j，我们可以控制日志在哪里输出，如控制台、文件、GUI组件、甚至是套接口服务器、NT的事件记录器、UNIX Syslog守护进程等；我们也可以控制每一条日志的输出格式；也可以定义每一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="log4j的学习及在web项目中的应用">
+<meta property="og:url" content="http://yoursite.com/2015/09/18/log4j/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在项目中我们都是使用log4j来控制日志的，下面让我们了解一下其他日志工具并学习一下log4j吧。
+一、 日志工具1、log4j(一) 简介 Log4j是Apache的一个开放源代码项目，用于记录日志，通过使用Log4j，我们可以控制日志在哪里输出，如控制台、文件、GUI组件、甚至是套接口服务器、NT的事件记录器、UNIX Syslog守护进程等；我们也可以控制每一条日志的输出格式；也可以定义每一">
+<meta property="og:updated_time" content="2015-09-18T08:48:54.129Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="log4j的学习及在web项目中的应用">
+<meta name="twitter:description" content="在项目中我们都是使用log4j来控制日志的，下面让我们了解一下其他日志工具并学习一下log4j吧。
+一、 日志工具1、log4j(一) 简介 Log4j是Apache的一个开放源代码项目，用于记录日志，通过使用Log4j，我们可以控制日志在哪里输出，如控制台、文件、GUI组件、甚至是套接口服务器、NT的事件记录器、UNIX Syslog守护进程等；我们也可以控制每一条日志的输出格式；也可以定义每一">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-log4j" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/18/log4j/" class="article-date">
+  <time datetime="2015-09-18T06:34:05.000Z" itemprop="datePublished">2015-09-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      log4j的学习及在web项目中的应用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在项目中我们都是使用log4j来控制日志的，下面让我们了解一下其他日志工具并学习一下log4j吧。</p>
+<h3 id="一、_日志工具">一、 日志工具</h3><h4 id="1、log4j">1、log4j</h4><h5 id="(一)_简介">(一) 简介</h5><p> Log4j是Apache的一个开放源代码项目，用于记录日志，通过使用Log4j，我们可以控制日志在哪里输出，如控制台、文件、GUI组件、甚至是套接口服务器、NT的事件记录器、UNIX Syslog守护进程等；我们也可以控制每一条日志的输出格式；也可以定义每一条日志信息的级别来更加细致地控制日志的生成过程。这些在使用log4j时是通过一个配置文件来灵活地进行配置，而且不需要修改应用的代码。</p>
+<p> 此外，通过Log4j其他语言接口，您可以在C、C++、.Net、PL/SQL程序中使用Log4j，其语法和用法与在Java程序中一样，使得多语言分布式系统得到一个统一一致的日志组件模块。而且，通过使用各种第三方扩展，您可以很方便地将Log4j集成到J2EE、JINI甚至是SNMP应用中。</p>
+<h5 id="(二)log4j的优点">(二)log4j的优点</h5><p>   (1) 可以通过配置文件定义日志级别、输出目的地及输出格式，不用修改应用代码；<br>   (2) 在系统开发阶段可以打印详细的log信息以跟踪系统运行情况,而在系统稳定后可以关闭log输出,从而在能跟踪系统运行情况的同时,又减少了垃圾代码（System.out.println(……)等)；<br>   (3)  log4j是一套完备的、灵活的、可配置的日志工具。</p>
+<h4 id="2、_Commons_Logging">2、 Commons Logging</h4><p> Jakarta Commons Logging (JCL)提供的是一个日志(Log)接口(interface)，同时兼顾轻量级和不依赖于具体的日志实现工具。它提供给中间件/日志工具开发者一个简单的日志操作抽象，允许程序开发人员使用不同的具体日志实现工具。用户被假定已熟悉某种日志实现工具的更高级别的细节。JCL提供的接口，对其它一些日志工具，包括Log4J, Avalon LogKit, and JDK 1.4等，进行了简单的包装，此接口更接近于Log4J和LogKit的实现.</p>
+<h4 id="3、_Simple_Log">3、 Simple Log</h4><p>Simple Log是一个logging anti-framework.Simple Log是一个让日记操作变得简单但很小的类库并且几乎不需要你做任何操作就可以得到日记的输出.它与其它日记框架相比最大的特点是使用简单,特别是在条件配置方面.它并不打算在一个包中解决所有日记问题,但它提供足够的功能来满足大多数应用程序所需的日记操作.</p>
+<h4 id="4、_MonoLog">4、  MonoLog</h4><p>Monolog是一个用于监视和日志操作的API,国际化支持.</p>
+<h3 id="二、log4j的使用">二、log4j的使用</h3><p>在使用log4j时，要用到log4j的jar包，我使用的是1.2.x版本。<br>下载地址：<a href="http://logging.apache.org/log4j/1.2/download.html" target="_blank" rel="external">http://logging.apache.org/log4j/1.2/download.html</a></p>
+<h4 id="1、_log4j组件">1、 log4j组件</h4><p>Log4j 由 logger、appender 和 layout 三个组件组成。可以通过同名的 Java 类访问 Log4j 的这三个组件。</p>
+<h5 id="（1）_Logger_-_日志输出组件">（1）     Logger - 日志输出组件</h5><p>可以通过 log4j API 的 logger 类对其进行访问。它的方法有：debug、info、warn、error、fatal 和 log。这些方法用于记录消息。 </p>
+<h5 id="（2）_Appender_-_日志输出目的地组件。">（2）    Appender - 日志输出目的地组件。</h5><p>执行日志语句时，Logger 对象将接收来自日志语句的记录请求。此请求是通过 logger 发送至 appender 的。然后，Appender 将输出结果写入到用户选择的目的地。对于不同的日志目的地，提供不同的 appender 类型：</p>
+<pre><code>ConsoleAppender - 目的地为控制台的Appender 
+FileAppender - 目的地为文件的Appender 
+DailyRollingAppender-配置文件每天产生一个<span class="command">log</span>文件
+RollingFileAppender - 目的地为大小受限的文件的Appender
+WriterAppender - 将日志信息以流格式发送到任意指定的地方
+JDBCAppender- 将日志信息保存到数据库中
+</code></pre><h5 id="（3）Layout_-_日志格式化组件。">（3）Layout - 日志格式化组件。</h5><p>appender 可以用来格式化输出结果的各种布局包括：</p>
+<pre><code>简单布局（SimpleLayout）- 包含日志信息的级别和信息字符串
+模式布局（PatternLayout）- 可以灵活地指定布局模式
+HTML 布局（HTMLLayout）-  以HTML表格形式布局
+TTCCLayout  - 包含日志产生的时间、线程、类别等等信息
+</code></pre><h4 id="2、log4j配置">2、log4j配置</h4><h5 id="(一)_日志输出级别配置">(一) 日志输出级别配置</h5><h6 id="(1)_log4j-rootLogger=日志级别，appender1,_appender2,_…-">(1) log4j.rootLogger=日志级别，appender1, appender2, ….</h6><p>示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">log</span>4j.rootLogger=INFO,stdout,DRFA</span><br></pre></td></tr></table></figure></p>
+<p>（1）设置整个工程的日志默认级别，以及日志的输出目标<br>（2）日志级别为ALL&lt;DEBUG&lt;INFO&lt;WARN&lt;ERROR&lt;FATAL&lt;OFF，不区分大小写。示例中的日志级别为INFO，即只有大于或者等于INFO的日志才会被记录。</p>
+<h6 id="(2)_log4j-logger-org-mypackage[-MyClass]=日志级别，appender1,_appender2,_…-">(2) log4j.logger.org.mypackage[.MyClass]=日志级别，appender1, appender2, ….</h6><p>示例：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">og4j.logger.org.apache.nutch.crawl.GeneratorJob=INFO,cmdstdout</span><br></pre></td></tr></table></figure></p>
+<p>log4j.rootLogger 中的设置对整个工程生效，若只想对某个包或者某个类生效，可以使用本配置项。</p>
+<h5 id="(二)_日志输出目的地配置">(二) 日志输出目的地配置</h5><pre><code><span class="number">1</span>、log4j<span class="class">.appender</span><span class="class">.appender1</span><span class="class">.File</span>=文件目录及文件
+<span class="number">2</span>、log4j<span class="class">.appender</span><span class="class">.appender1</span><span class="class">.MaxFileSize</span>=最大文件大小
+<span class="number">3</span>、log4j<span class="class">.appender</span><span class="class">.appender1</span><span class="class">.MaxBackupIndex</span>=备份文件个数
+</code></pre><p>其中，appender1是在log4j.rootlogger或者具体包日志中定义过的；<br>文件目录及文件，例如，/home/admin/logs/hutudan.log<br>最大文件大小，例如，100KB<br> 备份文件个数，例如，1</p>
+<pre><code><span class="number">4</span>、log4j<span class="class">.appender</span><span class="class">.ServerDailyRollingFile</span><span class="class">.DatePattern</span>=日志后缀格式
+</code></pre><p>例如，’.’yyyy-MM-dd</p>
+<pre><code><span class="number">5</span>、log4j<span class="class">.appender</span><span class="class">.appender1</span><span class="class">.layout</span>=org<span class="class">.apache</span><span class="class">.log4j</span>.日志布局格式
+</code></pre><p>HTMLLayout（以HTML表格形式布局）<br>SimpleLayout（包含日志信息的级别和信息字符串）<br>TTCCLayout（包含日志产生的时间，执行绪，类别等信息）<br>PatternLayout（可以灵活的指定布局格式，常用）</p>
+<pre><code><span class="number">6</span>、log4j<span class="class">.appender</span><span class="class">.appender1</span><span class="class">.layout</span><span class="class">.ConversionPattern</span>=日志输出格式
+</code></pre><p>例如，%d - %m%n或%d{yyyy-MM-dd HH:mm:ss} %p [%c] %m%n<br>%c 输出日志信息所属的类的全名<br>%d 输出日志时间点的日期或时间，默认格式为ISO8601，也可以在其后指定格式，比如：%d{yyy-M-dd HH:mm:ss }，输出类似：2002-10-18- 22：10：28<br>%f 输出日志信息所属的类的类名<br>%l 输出日志事件的发生位置，即输出日志信息的语句处于它所在的类的第几行<br>%m 输出代码中指定的信息，如log(message)中的message<br>%n 输出一个回车换行符，Windows平台为“rn”，Unix平台为“n”<br>%p 输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL。如果是调用debug()输出的，则为DEBUG，依此类推<br>%r 输出自应用启动到输出该日志信息所耗费的毫秒数<br>%t 输出产生该日志事件的线程名<br>可参考：<a href="http://blog.sina.com.cn/s/blog_4e4dd5570100qowy.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_4e4dd5570100qowy.html</a></p>
+<pre><code><span class="number">7</span>、log4j<span class="class">.appender</span><span class="class">.ServerDailyRollingFile</span><span class="class">.Append</span>=true
+</code></pre><p>在后面追加</p>
+<h4 id="4、log4j的properities配置">4、log4j的properities配置</h4><p>1 输出到console端：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Root logger option</span></span><br><span class="line"><span class="built_in">log</span>4j.rootLogger=INFO, stdout</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Direct log messages to stdout </span></span><br><span class="line"><span class="built_in">log</span>4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line"><span class="built_in">log</span>4j.appender.stdout.Target=System.out</span><br><span class="line"><span class="built_in">log</span>4j.appender.stdout.layout=org.apache.log4j.PatternLayout</span><br><span class="line"><span class="built_in">log</span>4j.appender.stdout.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss&#125; %-<span class="number">5</span>p %c&#123;<span class="number">1</span>&#125;:%L - %m%n</span><br></pre></td></tr></table></figure></p>
+<p>2 输出到日志文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Root logger option</span></span><br><span class="line"><span class="built_in">log</span>4j.rootLogger=INFO, file</span><br><span class="line"><span class="comment"># Direct log messages to a log file</span></span><br><span class="line"><span class="built_in">log</span>4j.appender.file=org.apache.log4j.RollingFileAppender</span><br><span class="line"><span class="built_in">log</span>4j.appender.file.File=C:\\loging.log</span><br><span class="line"><span class="built_in">log</span>4j.appender.file.MaxFileSize=<span class="number">1</span>MB</span><br><span class="line"><span class="built_in">log</span>4j.appender.file.MaxBackupIndex=<span class="number">1</span></span><br><span class="line"><span class="built_in">log</span>4j.appender.file.layout=org.apache.log4j.PatternLayout</span><br><span class="line"><span class="built_in">log</span>4j.appender.file.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss&#125; %-<span class="number">5</span>p %c&#123;<span class="number">1</span>&#125;:%L - %m%n</span><br></pre></td></tr></table></figure></p>
+<p>3 输出到console同时输出到日志文件：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Root logger option</span></span><br><span class="line"><span class="built_in">log</span>4j.rootLogger=INFO, file, stdout</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Direct log messages to a log file</span></span><br><span class="line"><span class="built_in">log</span>4j.appender.file=org.apache.log4j.RollingFileAppender</span><br><span class="line"><span class="built_in">log</span>4j.appender.file.File=C:\\loging.log</span><br><span class="line"><span class="built_in">log</span>4j.appender.file.MaxFileSize=<span class="number">1</span>MB</span><br><span class="line"><span class="built_in">log</span>4j.appender.file.MaxBackupIndex=<span class="number">1</span></span><br><span class="line"><span class="built_in">log</span>4j.appender.file.layout=org.apache.log4j.PatternLayout</span><br><span class="line"><span class="built_in">log</span>4j.appender.file.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss&#125; %-<span class="number">5</span>p %c&#123;<span class="number">1</span>&#125;:%L - %m%n</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Direct log messages to stdout</span></span><br><span class="line"><span class="built_in">log</span>4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line"><span class="built_in">log</span>4j.appender.stdout.Target=System.out</span><br><span class="line"><span class="built_in">log</span>4j.appender.stdout.layout=org.apache.log4j.PatternLayout</span><br><span class="line"><span class="built_in">log</span>4j.appender.stdout.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss&#125; %-<span class="number">5</span>p %c&#123;<span class="number">1</span>&#125;:%L - %m%n</span><br></pre></td></tr></table></figure></p>
+<p>4  按天roll over（翻滚，转存）日志：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Root logger option</span></span><br><span class="line"><span class="built_in">log</span>4j.rootLogger=INFO,console,dailyFile</span><br><span class="line"><span class="comment">##Daily log:</span></span><br><span class="line"><span class="built_in">log</span>4j.appender.dailyFile=org.apache.log4j.DailyRollingFileAppender</span><br><span class="line"><span class="built_in">log</span>4j.appender.dailyFile.File=e:/ftplog/autoftp.log</span><br><span class="line"><span class="built_in">log</span>4j.appender.dailyFile.Append=<span class="literal">true</span></span><br><span class="line"><span class="built_in">log</span>4j.appender.dailyFile.layout=org.apache.log4j.PatternLayout  </span><br><span class="line"><span class="built_in">log</span>4j.appender.dailyFile.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss&#125; %-<span class="number">5</span>p - %m%n</span><br><span class="line"><span class="built_in">log</span>4j.appender.dailyFile.Threshold=INFO</span><br><span class="line"><span class="built_in">log</span>4j.appender.dailyFile.DatePattern=<span class="string">'.'</span>yyyy-MM-dd  </span><br><span class="line"></span><br><span class="line"><span class="comment"># Direct log messages to console</span></span><br><span class="line"><span class="built_in">log</span>4j.appender.console=org.apache.log4j.ConsoleAppender</span><br><span class="line"><span class="built_in">log</span>4j.appender.console.Threshold=INFO</span><br><span class="line"><span class="built_in">log</span>4j.appender.console.ImmediateFlush=<span class="literal">true</span></span><br><span class="line"><span class="built_in">log</span>4j.appender.console.Target=System.out</span><br><span class="line"><span class="built_in">log</span>4j.appender.console.layout=org.apache.log4j.PatternLayout</span><br><span class="line"><span class="built_in">log</span>4j.appender.console.layout.ConversionPattern=%d&#123;yyyy-MM-dd HH:mm:ss&#125; %-<span class="number">5</span>p %c&#123;<span class="number">1</span>&#125;:%L - %m%n</span><br></pre></td></tr></table></figure></p>
+<h4 id="4、web项目中使用log4j">4、web项目中使用log4j</h4><p>(1)引入log4j的jar包<br>(2)在web.xml中配置如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;webAppRootKey&lt;/param-name&gt;</span><br><span class="line">    &lt;param-value&gt;jeecg&lt;/param-value&gt;</span><br><span class="line">  &lt;/context-param&gt;</span><br><span class="line">  &lt;context-param&gt;</span><br><span class="line">    &lt;param-name&gt;<span class="built_in">log</span>4jConfigLocation&lt;/param-name&gt;</span><br><span class="line">    &lt;param-value&gt;classpath:<span class="built_in">log</span>4j.properties&lt;/param-value&gt;</span><br><span class="line">  &lt;/context-param&gt;</span><br><span class="line">  &lt;listener&gt;</span><br><span class="line">    &lt;listener-class&gt;org.springframework.web.util.Log4jConfigListener&lt;/listener-class&gt;</span><br><span class="line">  &lt;/listener&gt;</span><br></pre></td></tr></table></figure></p>
+<p>配置了log4j.properties的文件路径，并用spring配置了log4j的监听。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/09/18/log4j/" data-id="ciqabomcb0002corp5ofp7vow" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/21/在网页中画icon小图标/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在网页中画icon小图标
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/03/java-Annotation/">java Annotation</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/01/Junit4/">Junit4的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2015/12/21/在网页中画icon小图标/">在网页中画icon小图标</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/18/log4j/">log4j的学习及在web项目中的应用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
